@@ -1,5 +1,5 @@
 # Movie Listings
-***
+
 A simple frontend app that allows the user to filter a list of movies on genre and rating.
 
 The application was built using Node v14.15.0 and NPM v6.14.8.
@@ -10,8 +10,11 @@ The project uses vanilla JavaScript and Gulp to build.
 
 ## Installation
 Install: `$ npm install`
+
 Run: `$ npm start`
+
 Build: `$ npm run build`
+
 Run dist code: `$ npm run serve:dist`
 
 ## Browsers
