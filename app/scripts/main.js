@@ -187,18 +187,16 @@
       }
     });
 
-    // if we have no matches, tell the user - this needs fixing to only show the message once =/
-    if (resultcount === 0) {
+    // if we have no matches, tell the user
+    let noresmsg = document.querySelector('.nores');
+    if (resultcount === 0 && (noresmsg === null)) {
       let noresultdiv = document.createElement('p');
       noresultdiv.appendChild(document.createTextNode('No movies match your selected criteria.'));
       noresultdiv.classList.add('nores');
       movieholder.appendChild(noresultdiv);
     // or hide the 'no matches' message, if it's present
-    } else if (document.querySelector('.nores')) {
-      let noremsg = document.querySelectorAll('.nores');
-      noremsg.forEach((elm) => {
-        elm.remove();
-      });
+    } else if (resultcount > 0 && (noresmsg !== null)) {
+      noresmsg.remove();
     }
   };
 
