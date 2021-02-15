@@ -22,6 +22,9 @@ Run dist code: `$ npm run serve:dist`
 ## Browsers
 The app has been tested on Firefox 85, Chrome 88 and Edge 88. It does not currently work on IE11, although this could be polyfilled.
 
+## Tests
+The project has been configured to use Mocha, but it has been manually tested only, so no Mocha tests have been created.
+
 ## Notes and observations
 The Brief specified that movies should be presented in popularity order, having added a sort function to do this, the order did not appear to change - so I've omitted that from the final code.
 
