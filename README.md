@@ -9,6 +9,8 @@ Project scaffolding provided by [Yeoman](https://yeoman.io/) [webapp](https://gi
 The project uses vanilla JavaScript and Gulp to build.
 
 ## Installation
+`$ cd /path/to/repo`
+
 Install: `$ npm install`
 
 Run: `$ npm start`
