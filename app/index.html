@@ -1,0 +1,37 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Listings</title>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if IE]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="hero-unit">
+      <h1>Movie Listings</h1>
+      <div class="controls">
+        <div class="slider">
+          <label for="rating">Choose a minimum rating: </label><br>
+          <span class="slide-label">0</span> <input type="range" name="rating" id="rating" min="0" max="10" step="0.5" value="3"> <span class="slide-label">10</span> <br>
+          Current selection: <output class="rating-output" for="rating">3</output>
+        </div>
+        <p>Select genres:</p>
+        <div class="genre-picker"></div>
+      </div>
+      <div id="dbs-movies">
+        <h2 class="loading-movies">Loading movies...</h2>
+      </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

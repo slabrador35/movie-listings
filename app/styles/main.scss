@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
+$breakpoint-sm: 650px;
+$breakpoint-lrg: 1158px;
+$default-gap: 12px;
+$border-r: 2px;
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  background: #fafafa;
+  font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+.hero-unit {
+  margin: 8px auto 0 auto;
+  max-width: 800px;
+  font-weight: 200;
+  background-color: #eee;
+  border-radius: $border-r;
+  padding: 12px;
+
+  @media (min-width: $breakpoint-lrg) {
+    max-width: 1156px;
+  }
+
+  h1 {
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -3px;
+    margin: 8px;
+    text-align: center;
+  }
+}
+
+.slider {
+  margin: $default-gap auto;
+  width: 20rem;
+  text-align: center;
+
+  & + p {
+    text-align: center;;
+  }
+}
+
+input[type="range"] {
+  width: calc(100% - 3rem);
+}
+
+.slide-label {
+  position: relative;
+  top: -.4rem;
+}
+
+.genre-picker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: $default-gap auto;
+  max-width: $breakpoint-sm;
+
+  div {
+    margin: 4px $default-gap;
+  }
+}
+
+#dbs-movies {
+  display: grid;
+
+  @media (min-width: $breakpoint-sm) {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0 $default-gap;
+  }
+
+  @media (min-width: $breakpoint-lrg) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.loading-movies {
+  text-align: center;
+  margin: 36px 0;
+  position: relative;
+  right: -50%;
+}
+
+.singleMovie {
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-radius: $border-r;
+  margin: 0 0 $default-gap 0;
+  padding: 0 $default-gap;
+  opacity: 1;
+  transition: opacity .25s;
+
+  &.transition {
+    opacity: 0;
+    transition: opacity .25s;
+  }
+
+  &.hide, .hidden {
+    display: none;
+  }
+
+  h2 {
+    margin: 8px 0 $default-gap 0;
+  }
+
+  img {
+    width: 60px;
+    height: auto;
+    float: left;
+    margin: $default-gap $default-gap $default-gap 0;
+  }
+
+  .rating {
+    text-align: right;
+  }
+}
