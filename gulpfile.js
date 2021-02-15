@@ -92,6 +92,11 @@ function fonts() {
     .pipe($.if(!isProd, dest('.tmp/fonts'), dest('dist/fonts')));
 };
 
+function dataFiles() {
+  return src('app/data/*.json')
+    .pipe(dest('dist/data'));
+};
+
 function extras() {
   return src([
     'app/*',
@@ -117,6 +122,7 @@ const build = series(
     series(parallel(styles, scripts), html),
     images,
     fonts,
+    dataFiles,
     extras
   ),
   measureSize

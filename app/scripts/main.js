@@ -1,7 +1,7 @@
 (() => {
-  "use strict";
+  'use strict';
   let genrelabels = [];
-  let movieholder = document.querySelector("#dbs-movies");
+  let movieholder = document.querySelector('#dbs-movies');
 
   /*
    * Show a (reasonably) friendly message to the user if we can't retrieve a json file
@@ -18,15 +18,15 @@
     return new Promise(function(resolve, reject) {
 
       const reqObj = new XMLHttpRequest();
-      reqObj.open("GET", src);
+      reqObj.open('GET', src);
       reqObj.send();
       reqObj.onload = () => {
         if (reqObj.status >= 200 && reqObj.status < 300) {
           let datalist = JSON.parse(reqObj.responseText);
 
-          if (typ === "movie") datalist = datalist.results;
-          else if (typ === "genre") datalist = datalist.genres;
-          else reject("unknown");
+          if (typ === 'movie') datalist = datalist.results;
+          else if (typ === 'genre') datalist = datalist.genres;
+          else reject('unknown');
 
           resolve(datalist);
         } else {
@@ -86,16 +86,16 @@
    * Loop through all the genre labels and make a checkbox for each
    */
   const displayGenreCheckbs = () => {
-    let checkboxHolder = document.querySelector(".genre-picker");
+    let checkboxHolder = document.querySelector('.genre-picker');
     genrelabels.forEach((genere) => {
 
       // make sure attr values don't have spaces
-      let handle = genere.replace(" ", "-");
+      let handle = genere.replace(' ', '-');
       // create new checkbox with label inside a div
-      let checkdiv = document.createElement("div");
-      let checkbox = document.createElement("input");
-      let label = document.createElement("label")
-      checkbox.type = "checkbox";
+      let checkdiv = document.createElement('div');
+      let checkbox = document.createElement('input');
+      let label = document.createElement('label')
+      checkbox.type = 'checkbox';
       // checkbox.checked = "checked";
       checkbox.id = handle;
       checkbox.name = handle;
@@ -113,16 +113,16 @@
    * Add the same event handler to all the genre checkboxes and ratings slider
    */
   const setupEventHandlers = () => {
-    let genreCheckboxes = document.querySelectorAll("input[type='checkbox']");
-    let ratingslider = document.querySelector("#rating");
+    let genreCheckboxes = document.querySelectorAll('input[type=\'checkbox\']');
+    let ratingslider = document.querySelector('#rating');
 
     genreCheckboxes.forEach((chk) => {
-      chk.addEventListener("change", () => {
+      chk.addEventListener('change', () => {
         filtermovies(genreCheckboxes, ratingslider);
       });
     });
 
-    ratingslider.addEventListener("change", () => {
+    ratingslider.addEventListener('change', () => {
       filtermovies(genreCheckboxes, ratingslider);
     });
   };
@@ -133,14 +133,14 @@
    */
   const filtermovies = (genreCheckboxes, ratingslider) => {
 
-    let themovies = movieholder.querySelectorAll(".singleMovie");
+    let themovies = movieholder.querySelectorAll('.singleMovie');
     // get the selected rating
     let selectedRating = ratingslider.value;
     let selectedGenres = [];
     let resultcount = 0;
 
     // show the selected rating to the user
-    document.querySelector(".rating-output").innerText = selectedRating;
+    document.querySelector('.rating-output').innerText = selectedRating;
 
     // get the currently selected genres
     genreCheckboxes.forEach((thisBox) => {
@@ -150,20 +150,20 @@
     // loop through the movies to see if each matches the selected rating and genres
     themovies.forEach((movie) => {
       // turn the genre labels back into an array
-      let thismoviegs = movie.querySelector("p").innerText.split(", ");
-      let thismovier = movie.querySelector(".hidden").innerText;
+      let thismoviegs = movie.querySelector('p').innerText.split(', ');
+      let thismovier = movie.querySelector('.hidden').innerText;
       let gotagenre = true;
 
       // if there are no genres slected, show or hide the movie based on it's rating only
       if (selectedGenres.length < 1) {
         if (thismovier >= selectedRating) {
           resultcount++;
-          movie.classList.remove("transition");
-          movie.classList.remove("hide");
+          movie.classList.remove('transition');
+          movie.classList.remove('hide');
         } else {
-          movie.classList.add("transition");
+          movie.classList.add('transition');
           setTimeout(() => {
-            movie.classList.add("hide");
+            movie.classList.add('hide');
           }, 260);
         }
       // otherwise, see if the movie has all the selected genres...
@@ -176,12 +176,12 @@
         // ...if the move has a selected genre, show it if it's rating is sufficient
         if (gotagenre && thismovier >= selectedRating) {
           resultcount++;
-          movie.classList.remove("transition");
-          movie.classList.remove("hide");
+          movie.classList.remove('transition');
+          movie.classList.remove('hide');
         } else {
-          movie.classList.add("transition");
+          movie.classList.add('transition');
           setTimeout(() => {
-            movie.classList.add("hide");
+            movie.classList.add('hide');
           }, 260);
         }
       }
@@ -189,13 +189,13 @@
 
     // if we have no matches, tell the user - this needs fixing to only show the message once =/
     if (resultcount === 0) {
-      let noresultdiv = document.createElement("p");
-      noresultdiv.appendChild(document.createTextNode("No movies match your selected criteria."));
-      noresultdiv.classList.add("nores");
+      let noresultdiv = document.createElement('p');
+      noresultdiv.appendChild(document.createTextNode('No movies match your selected criteria.'));
+      noresultdiv.classList.add('nores');
       movieholder.appendChild(noresultdiv);
     // or hide the 'no matches' message, if it's present
-    } else if (document.querySelector(".nores")) {
-      let noremsg = document.querySelectorAll(".nores");
+    } else if (document.querySelector('.nores')) {
+      let noremsg = document.querySelectorAll('.nores');
       noremsg.forEach((elm) => {
         elm.remove();
       });
@@ -203,12 +203,12 @@
   };
 
   // wait for the DOM to load
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('DOMContentLoaded', () => {
     // get the list of movies
-    let movieList = loadJson("data/TMDb Movies Now Playing API.json", "movie");
+    let movieList = loadJson('data/TMDb Movies Now Playing API.json', 'movie');
     movieList.then((movieData) => {
       // then get the genres
-      let genreList = loadJson("data/TMDb Movie genres API.json", "genre");
+      let genreList = loadJson('data/TMDb Movie genres API.json', 'genre');
       genreList.then((genreData) => {
         // add the relevant genre labels to each movie
         let movielist = combineGenreData(movieData, genreData);
