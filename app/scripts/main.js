@@ -72,11 +72,10 @@
   const displayMovies = (movieArray) => {
     let htmlcontent = '';
     movieArray.forEach((movie) => {
-      htmlcontent += `<div class="singleMovie">
+      htmlcontent += `<div class="singleMovie" data-rating="${movie.vote_average}">
                         <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="" />
                         <h2>${movie.title} </h2>
                         <p>${movie.genrefull.join(', ')}</p>
-                        <p class="hidden">${movie.vote_average}</p>
                       </div>`;
     });
     movieholder.innerHTML = htmlcontent;
@@ -151,7 +150,7 @@
     themovies.forEach((movie) => {
       // turn the genre labels back into an array
       let thismoviegs = movie.querySelector('p').innerText.split(', ');
-      let thismovier = movie.querySelector('.hidden').innerText;
+      let thismovier = movie.dataset.rating;
       let gotagenre = true;
 
       // if there are no genres slected, show or hide the movie based on it's rating only
