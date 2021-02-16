@@ -46,7 +46,7 @@
 
       movie.genre_ids.forEach((gen) => {
         // find the label for the ID in the movies' genre_ids
-        let generename = genres.find(x => x.id === gen).name
+        let generename = genres.find(x => x.id === gen).name;
         // and add that label to the local and global lists
         genrelabelarray.push(generename);
         genrelabels.push(generename);
@@ -95,7 +95,6 @@
       let checkbox = document.createElement('input');
       let label = document.createElement('label')
       checkbox.type = 'checkbox';
-      // checkbox.checked = "checked";
       checkbox.id = handle;
       checkbox.name = handle;
       checkbox.value = genere;
